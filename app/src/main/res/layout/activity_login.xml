@@ -20,7 +20,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/edit_text_userName"
+            android:id="@+id/edit_text_fullName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
 
@@ -36,12 +36,12 @@
         android:layout_marginTop="20dp"
         android:layout_marginEnd="10dp"
         android:hint="User Name"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/userName_layout"
+        app:layout_constraintStart_toStartOf="@+id/userName_layout"
         app:layout_constraintTop_toBottomOf="@+id/userName_layout">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/edit_text_passWord"
+            android:id="@+id/edit_text_userName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
 
