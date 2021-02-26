@@ -21,8 +21,8 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        editTextFullName = findViewById(R.id.edit_text_fullName);
-        editTextUserName = findViewById(R.id.edit_text_userName);
+        editTextFullName = findViewById(R.id.edit_text_title);
+        editTextUserName = findViewById(R.id.edit_text_description);
         buttonLogin = findViewById(R.id.btn_login);
 
 
