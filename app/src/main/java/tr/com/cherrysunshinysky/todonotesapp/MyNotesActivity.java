@@ -1,8 +1,9 @@
 package tr.com.cherrysunshinysky.todonotesapp;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.util.Log;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
@@ -21,18 +22,16 @@ public class MyNotesActivity extends AppCompatActivity {
     FloatingActionButton fabAddNotes;
     TextView textViewTitle;
     TextView textViewDescription;
+    SharedPreferences sharedPreferences;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my_notes);
-        fabAddNotes = findViewById(R.id.fab_add_notes);
-        textViewTitle = findViewById(R.id.tv_title);
-        textViewDescription = findViewById(R.id.tv_description);
+        bindViews();
+        setupSharedPreference();
+        getIntentData();
 
-        Intent intent = getIntent();
-        fullName = intent.getStringExtra("full_name");
-        userName = intent.getStringExtra("user_name");
 
         fabAddNotes.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -42,13 +41,31 @@ public class MyNotesActivity extends AppCompatActivity {
         });
 
 
-        Log.d("MyNotesActivity1", fullName);
-        Log.d("MyNotesActivity2", userName);
-
         if (fullName != null) {
             getSupportActionBar().setTitle(fullName);
         }
 
+    }
+
+    private void setupSharedPreference() {
+        sharedPreferences = getSharedPreferences(PrefConstant.SHARED_PREFERENCE_NAME, MODE_PRIVATE);
+
+
+    }
+
+    private void getIntentData() {
+        Intent intent = getIntent();
+        fullName = intent.getStringExtra("full_name");
+        userName = intent.getStringExtra("user_name");
+        if (TextUtils.isEmpty(fullName)) {
+            fullName = sharedPreferences.getString(PrefConstant.FULL_NAME, "");
+        }
+    }
+
+    private void bindViews() {
+        fabAddNotes = findViewById(R.id.fab_add_notes);
+        textViewTitle = findViewById(R.id.tv_title);
+        textViewDescription = findViewById(R.id.tv_description);
     }
 
     private void setupDialogBox() {
@@ -61,13 +78,10 @@ public class MyNotesActivity extends AppCompatActivity {
                 .setCancelable(false)
                 .create();
 
-        buttonSubmit.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                textViewTitle.setText(editTextTitle.getText().toString());
-                textViewDescription.setText(editTextDescription.getText().toString());
-                dialog.hide();
-            }
+        buttonSubmit.setOnClickListener(view1 -> {
+            textViewTitle.setText(editTextTitle.getText().toString());
+            textViewDescription.setText(editTextDescription.getText().toString());
+            dialog.hide();
         });
         dialog.show();
     }
