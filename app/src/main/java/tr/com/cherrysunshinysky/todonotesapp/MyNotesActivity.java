@@ -20,6 +20,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import java.util.ArrayList;
 
 import tr.com.cherrysunshinysky.todonotesapp.adapter.NotesAdapter;
+import tr.com.cherrysunshinysky.todonotesapp.clicklistener.ItemClickListener;
 import tr.com.cherrysunshinysky.todonotesapp.model.Notes;
 
 public class MyNotesActivity extends AppCompatActivity {
@@ -31,6 +32,7 @@ public class MyNotesActivity extends AppCompatActivity {
     EditText editTextTitle;
     EditText editTextDescription;
     SharedPreferences sharedPreferences;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,7 +58,18 @@ public class MyNotesActivity extends AppCompatActivity {
     }
 
     private void setupRecyclerView() {
-        NotesAdapter notesAdapter = new NotesAdapter(notesList);
+
+        ItemClickListener itemClickListener = new ItemClickListener() {
+            @Override
+            public void onClick() {
+                Log.i("OnClick", "OnClick Clicked!");
+            }
+        };
+
+
+        NotesAdapter notesAdapter = new NotesAdapter(notesList, itemClickListener);
+
+
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(MyNotesActivity.this);
         linearLayoutManager.setOrientation(RecyclerView.VERTICAL);
         rvNotes.setLayoutManager(linearLayoutManager);
