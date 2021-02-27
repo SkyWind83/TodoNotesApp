@@ -9,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
@@ -22,6 +23,9 @@ import java.util.ArrayList;
 import tr.com.cherrysunshinysky.todonotesapp.adapter.NotesAdapter;
 import tr.com.cherrysunshinysky.todonotesapp.clicklistener.ItemClickListener;
 import tr.com.cherrysunshinysky.todonotesapp.model.Notes;
+
+import static tr.com.cherrysunshinysky.todonotesapp.PrefConstant.DESCRIPTION;
+import static tr.com.cherrysunshinysky.todonotesapp.PrefConstant.TITLE;
 
 public class MyNotesActivity extends AppCompatActivity {
 
@@ -41,7 +45,7 @@ public class MyNotesActivity extends AppCompatActivity {
         bindViews();
         setupSharedPreference();
         getIntentData();
-
+        setupRecyclerView();
 
         fabAddNotes.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -61,8 +65,11 @@ public class MyNotesActivity extends AppCompatActivity {
 
         ItemClickListener itemClickListener = new ItemClickListener() {
             @Override
-            public void onClick() {
-                Log.i("OnClick", "OnClick Clicked!");
+            public void onClick(Notes notes) {
+                Intent intent = new Intent(MyNotesActivity.this, DetailActivity.class);
+                intent.putExtra(TITLE, notes.getTitle());
+                intent.putExtra(DESCRIPTION, notes.getDescription());
+                startActivity(intent);
             }
         };
 
@@ -109,13 +116,17 @@ public class MyNotesActivity extends AppCompatActivity {
         buttonSubmit.setOnClickListener(view1 -> {
             String title = editTextTitle.getText().toString();
             String description = editTextDescription.getText().toString();
-            Notes notes = new Notes();
-            notes.setTitle(title);
-            notes.setDescription(description);
-            notesList.add(notes);
-            Log.d("MyNotesActivity", String.valueOf(notesList.size()));
-            setupRecyclerView();
-            dialog.hide();
+            if (!TextUtils.isEmpty(title) && !TextUtils.isEmpty(description)){
+                Notes notes = new Notes();
+                notes.setTitle(title);
+                notes.setDescription(description);
+                notesList.add(notes);
+                Log.d("MyNotesActivity", String.valueOf(notesList.size()));
+
+                dialog.hide();
+            }else {
+                Toast.makeText(MyNotesActivity.this, "Title or Description cannot be empty", Toast.LENGTH_SHORT).show();
+            }
         });
         dialog.show();
     }
