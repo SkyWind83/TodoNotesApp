@@ -16,6 +16,7 @@
         app:layout_constraintEnd_toEndOf="parent" />
 
     <androidx.recyclerview.widget.RecyclerView
+
         android:id="@+id/rv_notes"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -23,9 +24,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:listitem="@tools:sample/cities" />
-
-
+        tools:listitem="@layout/notes_adapter_layout"/>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

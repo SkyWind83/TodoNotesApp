@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
@@ -24,13 +25,11 @@ import tr.com.cherrysunshinysky.todonotesapp.model.Notes;
 public class MyNotesActivity extends AppCompatActivity {
 
     String fullName;
-    String userName;
     FloatingActionButton fabAddNotes;
-    RecyclerView recyclerViewNotes;
+    RecyclerView rvNotes;
     ArrayList<Notes> notesList = new ArrayList<>();
     EditText editTextTitle;
     EditText editTextDescription;
-
     SharedPreferences sharedPreferences;
 
     @Override
@@ -40,7 +39,7 @@ public class MyNotesActivity extends AppCompatActivity {
         bindViews();
         setupSharedPreference();
         getIntentData();
-        setupRecyclerView();
+
 
         fabAddNotes.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -60,8 +59,8 @@ public class MyNotesActivity extends AppCompatActivity {
         NotesAdapter notesAdapter = new NotesAdapter(notesList);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(MyNotesActivity.this);
         linearLayoutManager.setOrientation(RecyclerView.VERTICAL);
-        recyclerViewNotes.setLayoutManager(linearLayoutManager);
-        recyclerViewNotes.setAdapter(notesAdapter);
+        rvNotes.setLayoutManager(linearLayoutManager);
+        rvNotes.setAdapter(notesAdapter);
     }
 
     private void setupSharedPreference() {
@@ -73,7 +72,6 @@ public class MyNotesActivity extends AppCompatActivity {
     private void getIntentData() {
         Intent intent = getIntent();
         fullName = intent.getStringExtra("full_name");
-        userName = intent.getStringExtra("user_name");
         if (TextUtils.isEmpty(fullName)) {
             fullName = sharedPreferences.getString(PrefConstant.FULL_NAME, "");
         }
@@ -81,15 +79,15 @@ public class MyNotesActivity extends AppCompatActivity {
 
     private void bindViews() {
         fabAddNotes = findViewById(R.id.fab_add_notes);
-        recyclerViewNotes = findViewById(R.id.rv_notes);
+        rvNotes = findViewById(R.id.rv_notes);
 
     }
 
     private void setupDialogBox() {
         View view = LayoutInflater.from(MyNotesActivity.this).inflate(R.layout.add_notes_dialog_layout, null);
         Button buttonSubmit = view.findViewById(R.id.btn_submit);
-        editTextTitle = view.findViewById(R.id.et_title);
-        editTextDescription = view.findViewById(R.id.et_description);
+        editTextTitle = view.findViewById(R.id.et_title_add_notes);
+        editTextDescription = view.findViewById(R.id.et_description_add_notes);
         AlertDialog dialog = new AlertDialog.Builder(MyNotesActivity.this)
                 .setView(view)
                 .setCancelable(false)
@@ -102,6 +100,8 @@ public class MyNotesActivity extends AppCompatActivity {
             notes.setTitle(title);
             notes.setDescription(description);
             notesList.add(notes);
+            Log.d("MyNotesActivity", String.valueOf(notesList.size()));
+            setupRecyclerView();
             dialog.hide();
         });
         dialog.show();

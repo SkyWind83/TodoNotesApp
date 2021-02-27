@@ -30,8 +30,8 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        editTextFullName = findViewById(R.id.et_title);
-        editTextUserName = findViewById(R.id.et_description);
+        editTextFullName = findViewById(R.id.et_title_add_notes);
+        editTextUserName = findViewById(R.id.et_description_add_notes);
         buttonLogin = findViewById(R.id.btn_login);
         setupSharedPreferences();
 
