@@ -24,8 +24,7 @@ import tr.com.cherrysunshinysky.todonotesapp.adapter.NotesAdapter;
 import tr.com.cherrysunshinysky.todonotesapp.clicklistener.ItemClickListener;
 import tr.com.cherrysunshinysky.todonotesapp.model.Notes;
 
-import static tr.com.cherrysunshinysky.todonotesapp.PrefConstant.DESCRIPTION;
-import static tr.com.cherrysunshinysky.todonotesapp.PrefConstant.TITLE;
+
 
 public class MyNotesActivity extends AppCompatActivity {
 
@@ -67,8 +66,8 @@ public class MyNotesActivity extends AppCompatActivity {
             @Override
             public void onClick(Notes notes) {
                 Intent intent = new Intent(MyNotesActivity.this, DetailActivity.class);
-                intent.putExtra(TITLE, notes.getTitle());
-                intent.putExtra(DESCRIPTION, notes.getDescription());
+                intent.putExtra(PrefConstant.TITLE, notes.getTitle());
+                intent.putExtra(PrefConstant.DESCRIPTION, notes.getDescription());
                 startActivity(intent);
             }
         };
@@ -117,9 +116,9 @@ public class MyNotesActivity extends AppCompatActivity {
             String title = editTextTitle.getText().toString();
             String description = editTextDescription.getText().toString();
             if (!TextUtils.isEmpty(title) && !TextUtils.isEmpty(description)){
-                Notes notes = new Notes();
-                notes.setTitle(title);
-                notes.setDescription(description);
+                Notes notes = new Notes(title, description);
+                //notes.setTitle(title);
+                //notes.setDescription(description);
                 notesList.add(notes);
                 Log.d("MyNotesActivity", String.valueOf(notesList.size()));
 
