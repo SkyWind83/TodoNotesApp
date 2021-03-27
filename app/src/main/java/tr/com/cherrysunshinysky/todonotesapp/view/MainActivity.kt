@@ -1,7 +1,8 @@
-package tr.com.cherrysunshinysky.todonotesapp
+package tr.com.cherrysunshinysky.todonotesapp.view
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import tr.com.cherrysunshinysky.todonotesapp.R
 
 /**
  * Created by Emir U. Özen on 3/13/21.

@@ -1,4 +1,4 @@
-package tr.com.cherrysunshinysky.todonotesapp
+package tr.com.cherrysunshinysky.todonotesapp.utils
 
 /**
  * Created by Emir U. Özen on 3/12/21.

@@ -1,4 +1,4 @@
-package tr.com.cherrysunshinysky.todonotesapp
+package tr.com.cherrysunshinysky.todonotesapp.view
 
 import android.content.Intent
 import android.content.SharedPreferences
@@ -12,6 +12,8 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
+import tr.com.cherrysunshinysky.todonotesapp.utils.PrefConstant
+import tr.com.cherrysunshinysky.todonotesapp.R
 import tr.com.cherrysunshinysky.todonotesapp.adapter.NotesAdapter
 import tr.com.cherrysunshinysky.todonotesapp.clicklistener.ItemClickListener
 import tr.com.cherrysunshinysky.todonotesapp.model.Notes

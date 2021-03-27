@@ -1,9 +1,11 @@
-package tr.com.cherrysunshinysky.todonotesapp
+package tr.com.cherrysunshinysky.todonotesapp.view
 
 import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import tr.com.cherrysunshinysky.todonotesapp.utils.PrefConstant
+import tr.com.cherrysunshinysky.todonotesapp.R
 import java.lang.Boolean.FALSE
 import java.lang.Boolean.TRUE
 

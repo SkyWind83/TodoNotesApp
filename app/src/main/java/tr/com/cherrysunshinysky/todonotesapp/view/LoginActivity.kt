@@ -1,4 +1,4 @@
-package tr.com.cherrysunshinysky.todonotesapp
+package tr.com.cherrysunshinysky.todonotesapp.view
 
 import android.content.Intent
 import android.content.SharedPreferences
@@ -8,6 +8,8 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import tr.com.cherrysunshinysky.todonotesapp.utils.PrefConstant
+import tr.com.cherrysunshinysky.todonotesapp.R
 
 /**
  * Created by Emir U. Özen on 3/27/2021
