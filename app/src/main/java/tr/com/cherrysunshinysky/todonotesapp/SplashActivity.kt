@@ -23,11 +23,11 @@ class SplashActivity : AppCompatActivity() {
     private fun checkLoginStatus() {
         when (sharedPreferences.getBoolean(PrefConstant.IS_LOGGED_IN, false)) {
             TRUE -> {
-                val intent: Intent = Intent(this@SplashActivity, MyNotesActivity::class.java)
+                val intent = Intent(this@SplashActivity, MyNotesActivity::class.java)
                 startActivity(intent)
             }
             FALSE -> {
-                val intent: Intent = Intent(this@SplashActivity, LoginActivity::class.java)
+                val intent = Intent(this@SplashActivity, LoginActivity::class.java)
                 startActivity(intent)
             }
         }
