@@ -3,15 +3,13 @@ package tr.com.cherrysunshinysky.todonotesapp.db
 import androidx.room.*
 
 /**
- * Created by Emir U. Özen on 3/27/2021
+ * Created by Emir U. Özen on 4/24/2021
  * emir.ozen@outlook.com
  */
-
-// DATA Access Objects
-
 @Dao
 interface NotesDao {
-    @Query("SELECT * FROM NotesData")
+
+    @Query("SELECT * FROM notesData")
     fun getAll(): List<Notes>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
@@ -21,5 +19,6 @@ interface NotesDao {
     fun updateNotes(notes: Notes)
 
     @Delete
-    fun deleteNote(notes: Notes)
+    fun delete(notes: Notes)
+
 }

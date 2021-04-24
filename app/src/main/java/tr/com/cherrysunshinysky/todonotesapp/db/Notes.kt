@@ -5,11 +5,10 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 
 /**
- * Created by Emir U. Özen on 3/27/2021
+ * Created by Emir U. Özen on 4/24/2021
  * emir.ozen@outlook.com
  */
-
-@Entity(tableName = "NotesData")
+@Entity(tableName = "notesData")
 data class Notes(
         @PrimaryKey(autoGenerate = true)
         var id: Int? = null,

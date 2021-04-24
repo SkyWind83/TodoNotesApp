@@ -7,24 +7,23 @@ import androidx.room.RoomDatabase
 
 
 /**
- * Created by Emir U. Özen on 3/27/2021
+ * Created by Emir U. Özen on 4/24/2021
  * emir.ozen@outlook.com
  */
-
 @Database(entities = [Notes::class], version = 1)
 abstract class NotesDatabase : RoomDatabase() {
     abstract fun notesDao(): NotesDao
 
-
     companion object {
         lateinit var INSTANCE: NotesDatabase
-        fun getInstance(mContext: Context): NotesDatabase {
+        fun getInstance(context: Context): NotesDatabase {
             synchronized(NotesDatabase::class) {
-                INSTANCE = Room.databaseBuilder(mContext.applicationContext, NotesDatabase::class.java, "my-notes.db")
+                INSTANCE = Room.databaseBuilder(context.applicationContext, NotesDatabase::class.java, "my-notes.db")
                         .allowMainThreadQueries()
                         .build()
             }
             return INSTANCE
         }
     }
+
 }
